@@ -31,4 +31,4 @@ git pull --verbose
 
 cd "${GitHubRepoDirectory}"
 printf "\n#### Setting Permissions ####\n\n"
-chmod -Rv ug=rwx,o=rx .
+chmod -Rvv ug=rwx,o=rx .

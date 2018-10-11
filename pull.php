@@ -17,9 +17,9 @@ $ref = $payload['ref'];
 $private = $payload['repository']['private'];
 
 if (!$private) {
-    echo "Private: False";
+    echo "Private: False\n";
 } else {
-    echo "Private: True, Credentials Will Be Required!";
+    echo "Private: True, Credentials Will Be Required!\n";
 }
 
 if (isset($Repositories[$RepoName][$ref])) {

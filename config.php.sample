@@ -1,9 +1,0 @@
-<?php
-
-// Rename this file from 'config.php.sample' to 'config.php'
-
-define('SECRET', "YOUR GITHUB WEBHOOK SECRET");
-
-$Repositories['Your Repos']['Your Branch'] = "Full Repo Folder Path Including Repo Name (Do Not Include Slash At End)"; // Duplicate This Line For As Many Repo's As You Want
-
-?>

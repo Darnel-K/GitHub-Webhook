@@ -11,6 +11,8 @@ Versioning numbers defined as MAJOR.MINOR.PATCH
 
 -   Imports
 -   Headers & payload stored in data variable
+-   Payload Validation
+-   Load settings from file
 
 ## [0.0.0] - 2018-10-17
 

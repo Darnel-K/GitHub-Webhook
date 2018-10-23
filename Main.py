@@ -15,4 +15,4 @@ Data = {
 
 print("Content-Type: application/json; charset=utf-8\n\n")
 
-print(json.dumps(Data))
+print(json.dumps(Data, indent=4))

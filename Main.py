@@ -21,3 +21,4 @@ Data = {
 print("Content-Type: application/json; charset=utf-8\n\n")
 
 print(json.dumps(Data, indent=4))
+print(json.dumps(Settings, indent=4))

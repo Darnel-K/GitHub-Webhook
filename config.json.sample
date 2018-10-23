@@ -2,8 +2,7 @@
     "SECRET": "YOUR GITHUB WEBHOOK SECRET",
     "Repositories": {
         "Your Repo": {
-            "Branch": "",
-            "Path": ""
+            "Branch": "Path"
         }
     }
 }

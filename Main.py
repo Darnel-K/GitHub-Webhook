@@ -22,11 +22,14 @@ Data = {
     "Payload": json.loads(Payload)
 }
 
-Hash_Algo = Data['X-Hub-Signature'].split("=")
+Algo, Hash = Data['X-Hub-Signature'].split("=")
 PayloadHash = hmac.new(
-    bytes(Settings['SECRET'], 'utf-8'), bytes(Payload, 'utf-8'), Hash_Algo[0]).hexdigest()
+    bytes(Settings['SECRET'], 'utf-8'), bytes(Payload, 'utf-8'), Algo).hexdigest()
+
+if (Hash != PayloadHash):
+    print("Content-Type: text/plain; charset=utf-8\n\nERROR: UNABLE TO VALIDATE REQUEST")
+    exit()
 
 print("Content-Type: application/json; charset=utf-8\n\n")
 
 print(json.dumps(Data, indent=4))
-print(PayloadHash)

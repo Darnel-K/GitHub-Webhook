@@ -1,14 +1,18 @@
 #!/usr/local/bin/python3.6
-# import cgi
-# import json
-# import cgitb
+import cgi
+import json
+import cgitb
 
 import os
+Data = {
+    "X-GitHub-Delivery": os.environ["HTTP_X_GITHUB_DELIVERY"],
+    "X-GitHub-Event": os.environ["HTTP_X_GITHUB_EVENT"],
+    "X-Hub-Signature": os.environ["HTTP_X_HUB_SIGNATURE"],
+    "User-Agent": os.environ["HTTP_USER_AGENT"],
+    "Payload": cgi.FieldStorage()
+}
 
-print("Content-Type: text/html")
-print("Cache-Control: no-cache")
+print("Content-Type: application/json")
 print()
 
-print("<html><body><code>")
-print(os.environ)
-print("</code></html></body>")
+print(json.dumps(Data))

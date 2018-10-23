@@ -23,7 +23,7 @@ Data = {
 }
 
 Hash_Algo = Data['X-Hub-Signature'].split("=")
-PayloadHash = hmac.new(Hash_Algo[1], Payload, Hash_Algo[0])
+PayloadHash = hmac.new(Hash_Algo[1], bytes(Payload), Hash_Algo[0])
 
 print("Content-Type: application/json; charset=utf-8\n\n")
 

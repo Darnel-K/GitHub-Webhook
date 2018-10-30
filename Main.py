@@ -95,7 +95,7 @@ def git_status():
         "STDOUT": [],
         "STDERR": []
     }
-    s = subprocess.run('', stdout=subprocess.PIPE,
+    s = subprocess.run('git status -vv --long', stdout=subprocess.PIPE,
                        stderr=subprocess.PIPE, shell=True)
     for i in s.stdout.decode('utf-8').splitlines():
         out['STDOUT'].append(str(i))

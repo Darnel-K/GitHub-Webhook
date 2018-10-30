@@ -11,7 +11,7 @@ import subprocess
 def exit_on_error(e, MSG, eCode):
     global DataStorage
     DataStorage["Error"].append({"e": e, "msg": MSG, "error_code": eCode})
-    choose_output()
+    choose_output(DataStorage)
 
 
 def read_settings(file):
@@ -35,8 +35,8 @@ DataStorage = {
     "Charset": Settings["Charset"],
     "Git": {
         "Status": {
-            "Before": '',
-            "After": ''
+            "Before": None,
+            "After": None
         }
     }
 }
@@ -91,15 +91,21 @@ def process_output(Data):
 
 
 def git_status():
-    out = {}
+    out = {
+        "STDOUT": [],
+        "STDERR": []
+    }
     s = subprocess.run('', stdout=subprocess.PIPE,
                        stderr=subprocess.PIPE, shell=True)
     for i in s.stdout.decode('utf-8').splitlines():
-        out['STD']
+        out['STDOUT'].append(str(i))
+    for i in s.stderr.decode('utf-8').splitlines():
+        out['STDERR'].append(str(i))
+    return out
 
 
-def choose_output():
-    Data = process_output(DataStorage)
+def choose_output(Data):
+    Data = process_output(Data)
     if (DataStorage["OutputType"] == "RAW"):
         output_as_raw(Data)
     elif (DataStorage["OutputType"] == "JSON"):
@@ -147,6 +153,10 @@ def run():
 
     if (Hash != PayloadHash):
         exit_on_error(None, 'UNABLE TO VALIDATE PAYLOAD', 403)
+
+    DataStorage['Git']['Status']['Before'] = git_status()
+
+    choose_output(DataStorage)
 
 
 run()

@@ -156,6 +156,8 @@ def run():
 
     DataStorage['Git']['Status']['Before'] = git_status()
 
+    DataStorage['Git']['Status']['After'] = git_status()
+
     choose_output(DataStorage)
 
 

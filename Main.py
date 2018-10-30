@@ -5,6 +5,7 @@ import cgitb
 import sys
 import hmac
 import os
+import subprocess
 
 
 def exit_on_error(e, MSG, eCode):
@@ -31,13 +32,20 @@ DataStorage = {
     "User-Agent": os.environ["HTTP_USER_AGENT"],
     "Payload": json.loads(RawPayload),
     "OutputType": Settings['OutputType'],
-    "Charset": Settings["Charset"]
+    "Charset": Settings["Charset"],
+    "Git": {
+        "Status": {
+            "Before": '',
+            "After": ''
+        }
+    }
 }
 
 
 def process_output(Data):
     output = {
         "Error": Data['Error'],
+        "Git": Data['Git'],
         "X-GitHub-Delivery": Data['X-GitHub-Delivery'],
         "X-GitHub-Event": Data['X-GitHub-Event'],
         "X-Hub-Signature": Data['X-Hub-Signature'],
@@ -80,6 +88,14 @@ def process_output(Data):
         "Commits": Data['Payload']['commits']
     }
     return output
+
+
+def git_status():
+    out = {}
+    s = subprocess.run('', stdout=subprocess.PIPE,
+                       stderr=subprocess.PIPE, shell=True)
+    for i in s.stdout.decode('utf-8').splitlines():
+        out['STD']
 
 
 def choose_output():
